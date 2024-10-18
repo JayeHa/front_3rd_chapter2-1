@@ -45,7 +45,7 @@ export class CartList {
   #calcCart() {
     this.totalPrice = 0;
     this.totalQuantity = 0;
-    let subTot = 0;
+    let subTotal = 0;
 
     Array.from(this.$element.children).forEach((cartItem) => {
       const currentProduct = this.productList.find((p) => p.id === cartItem.id);
@@ -58,7 +58,7 @@ export class CartList {
           quantity
         );
         this.totalQuantity += quantity;
-        subTot += currentProduct.val * quantity;
+        subTotal += currentProduct.val * quantity;
         this.totalPrice += itemPrice;
       }
     });
@@ -66,7 +66,7 @@ export class CartList {
     // 대량 구매 할인 적용
     const bulkDiscount = this.totalQuantity >= 30 ? 0.25 : 0;
     let discRate =
-      bulkDiscount > 0 ? bulkDiscount : (subTot - this.totalPrice) / subTot;
+      bulkDiscount > 0 ? bulkDiscount : (subTotal - this.totalPrice) / subTotal;
 
     // 화요일 특별 할인 적용
     if (new Date().getDay() === 2) {
