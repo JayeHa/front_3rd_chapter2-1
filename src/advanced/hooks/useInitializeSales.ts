@@ -85,7 +85,7 @@ export const useInitializeSales = ({
         }
       );
     },
-    [updateStockPrice]
+    [setTimedInterval, updateStockPrice]
   );
 
   /** 추천 상품 세일 시작 */
@@ -113,7 +113,7 @@ export const useInitializeSales = ({
         }
       );
     },
-    [updateStockPrice]
+    [setTimedInterval, updateStockPrice]
   );
 
   useEffect(() => {
@@ -121,5 +121,11 @@ export const useInitializeSales = ({
     startSuggestionSale(stockList, lastSelectedId);
 
     return () => clearTimers();
-  }, [lastSelectedId, startFlashSale, startSuggestionSale, stockList]);
+  }, [
+    clearTimers,
+    lastSelectedId,
+    startFlashSale,
+    startSuggestionSale,
+    stockList,
+  ]);
 };
